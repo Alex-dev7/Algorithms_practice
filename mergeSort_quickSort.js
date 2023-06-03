@@ -23,9 +23,28 @@ function mergeSort(arr) { /// run-time complexity O(n log n) = quasilinear time
     return merge(mergeSort(leftArray), mergeSort(rightArray))
 
   }
+
+
+
   
   function quickSort(arr){
     // YOUR CODE HERE
+    if(arr.length <= 1) return arr 
+
+    const pivot = arr[arr.length - 1]
+    const leftArr = []
+    const rightArr = []
+    
+    for(let i = 0; i < arr.length - 1; i++) {
+      if(arr[i] <= pivot) {
+        leftArr.push(arr[i])
+      } else {
+        rightArr.push(arr[i])
+      }
+    }  
+
+      return [...quickSort(leftArr), pivot, ...quickSort(rightArr)]
+    
   }
   
   
@@ -45,4 +64,5 @@ function mergeSort(arr) { /// run-time complexity O(n log n) = quasilinear time
   }
 
 
- console.log(mergeSort([12,6,3,7,13,8]))
+//  console.log(mergeSort([12,6,3,7,13,8]))
+ console.log(quickSort([12,6,3,7,13,8]))
