@@ -34,6 +34,13 @@ class LinkedList{
     }
     prependNode(data){
         // creates a new node with the given data and adds it to the front of the list
+        const newNode = new Node(data)
+        if(this.head === null){
+        this.head = newNode
+        } else {
+        newNode.next = this.head
+        this.head = newNode
+        }
     }
     pop(){
         // removes the last node from the list and returns it
