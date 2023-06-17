@@ -71,12 +71,39 @@ class LinkedList {
   removeFromFront() {
     // remove the head node from the list and return it
     // the next node in the list is the new head node
+    if (this.head === null) {
+      return null;
+    } else {
+      let current = this.head
+      const removedNode = current
+      this.head = this.head.next
+      return removedNode
+    } 
   }
   insertAt(X, data) {
     // insert a new node into the list with the given data
     // place it after X nodes in the list
     // if X exceeds the bounds of the list, put the node at the end
     // insertAt(0, 7) would add the new node as the head
+    const newNode = new Node(data);
+    if(this.head === null) {
+      this.head = newNode
+    }
+    else if(X <= 0){
+      newNode.next = this.head;
+      this.head = newNode;
+    } else {
+      let current = this.head;
+      let count = 0;
+
+      while (count < X - 1 && current.next !== null) {
+        current = current.next;
+        count++;
+      }
+
+      newNode.next = current.next;
+      current.next = newNode;
+    }
   }
   removeAt(X) {
     // remove the Xth node from the list, considering 0 to be the first node
@@ -99,3 +126,4 @@ let removedNode = list.pop();
 console.log(removedNode);
 let secondRemovedNode = list.pop();
 console.log(secondRemovedNode)
+
