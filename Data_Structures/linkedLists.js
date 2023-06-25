@@ -108,11 +108,36 @@ class LinkedList {
   removeAt(X) {
     // remove the Xth node from the list, considering 0 to be the first node
     // return the node that has been removed
+      let current = this.head;
+      let count = 0
+      while (count < X  ) {
+          if(count === X - 1  ){
+          const removedNode = current.next
+          current.next = current
+          return removedNode
+          }
+        current = current.next
+        count++
+      }
+      return null
   }
   search(data) {
     // searches the list for a node with the given data
     // if it is found, return the "index" of the node, considering 0 to be the first node
     // if not, return false
+    let current = this.head;
+    let index = 0;
+
+    while (current) {
+      if (current.data === data) {
+        return index;
+      }
+
+      current = current.next;
+      index++;
+    }
+
+    return false
   }
   sort() {
     // sort the Linked List in ascending order of data values
@@ -120,10 +145,14 @@ class LinkedList {
 }
 
 let list = new LinkedList();
-list.appendNode(1);
-list.appendNode(2);
-let removedNode = list.pop();
-console.log(removedNode);
-let secondRemovedNode = list.pop();
-console.log(secondRemovedNode)
+list.appendNode("A");
+list.appendNode("B");
+list.appendNode("C");
+list.appendNode("D");
+// let removedNode = list.pop();
+// console.log(removedNode);
+// let secondRemovedNode = list.pop();
+// console.log(secondRemovedNode)
+let remNodeAt = list.removeAt(2)
+console.log(remNodeAt)
 
