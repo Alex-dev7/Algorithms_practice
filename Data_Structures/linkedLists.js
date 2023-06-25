@@ -108,18 +108,26 @@ class LinkedList {
   removeAt(X) {
     // remove the Xth node from the list, considering 0 to be the first node
     // return the node that has been removed
+    if (X < 0 || X >= this.length) {
+      return null; // X is out of bounds, return null
+    } else if (X === 0) {
+      // remove the head node
+      const removedNode = this.head;
+      this.head = this.head.next;
+      return removedNode;
+    } else {
       let current = this.head;
-      let count = 0
-      while (count < X  ) {
-          if(count === X - 1  ){
-          const removedNode = current.next
-          current.next = current
-          return removedNode
-          }
-        current = current.next
-        count++
+      let count = 0;
+
+      while (count < X - 1 && current.next !== null) {
+        current = current.next;
+        count++;
       }
-      return null
+
+      const removedNode = current.next;
+      current.next = current.next.next;
+      return removedNode;
+    }
   }
   search(data) {
     // searches the list for a node with the given data
